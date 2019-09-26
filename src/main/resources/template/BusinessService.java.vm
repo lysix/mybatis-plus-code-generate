@@ -1,0 +1,15 @@
+package ${cfg.packageName}.businessService;
+
+import com.common.QueryParam;
+import com.common.PageBean;
+import java.util.List;
+
+import ${cfg.packageName}.dto.${cfg.upperObjectName}Dto;
+
+
+public interface ${cfg.upperObjectName}BusinessService {
+
+    public PageBean<${cfg.upperObjectName}Dto> selectPageByQueryParam(QueryParam param);
+
+    public List<${cfg.upperObjectName}Dto> selectByQueryParam(QueryParam param);
+}

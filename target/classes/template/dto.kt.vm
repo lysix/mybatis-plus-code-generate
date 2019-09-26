@@ -1,0 +1,49 @@
+package ${cfg.packageName}.dto;
+
+#if(${activeRecord})
+import java.io.Serializable;
+#end
+#foreach($pkg in ${table.importPackages})
+import ${pkg};
+#end
+#foreach($field in ${table.fields})
+    #if("${field.propertyType}" == "Date")
+    import java.util.Date;
+        #break;
+    #end
+#end
+#if(${entityLombokModel})
+import lombok.Data;
+import lombok.experimental.Accessors;
+#end
+
+import com.smy.framework.base.BaseEntity;
+
+/**
+ *
+ * $!{table.comment}
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+    #if(${entityLombokModel})
+@Data
+@Accessors(chain = true)
+    #end
+    #if(${superEntityClass})
+public class ${cfg.upperObjectName}Dto extends ${superEntityClass}
+    #else
+public class ${cfg.upperObjectName}Dto extends BaseEntity implements Serializable {
+    #end
+
+    private static final long serialVersionUID = 1L;
+
+## ----------  BEGIN 字段循环遍历  ----------
+    #foreach($field in ${table.fields})
+        #if("$!field.comment" != "")
+    //${field.comment}
+        #end
+    private ${field.propertyType} ${field.propertyName};
+
+    #end
+}

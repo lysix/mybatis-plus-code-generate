@@ -1,0 +1,23 @@
+package ${package.Service};
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import ${package.Entity}.${entity};
+import com.common.QueryParam;
+import com.common.BaseService;
+import java.util.List;
+
+/**
+ * <p>
+ * $!{table.comment} 服务类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
+
+    public IPage<${entity}> selectPageByQueryParam(QueryParam param);
+
+    public List<${entity}> selectByQueryParam(QueryParam param);
+}
+

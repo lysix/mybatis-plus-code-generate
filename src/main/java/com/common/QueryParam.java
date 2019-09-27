@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  * 查询参数
- * @author huangbing
+ * @author
  * @since 2018-11-08
  */
 @Data

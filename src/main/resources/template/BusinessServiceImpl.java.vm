@@ -25,7 +25,7 @@ import java.util.List;
  * @author ${author}
  * @since ${date}
  */
-@Service("${cfg.lowerObjectName}OmsService")
+@Service("${cfg.lowerObjectName}BusinessService")
 public class ${cfg.upperObjectName}BusinessServiceImpl implements ${cfg.upperObjectName}BusinessService {
 
     @Resource

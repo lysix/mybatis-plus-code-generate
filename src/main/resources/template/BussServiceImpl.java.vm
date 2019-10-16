@@ -1,0 +1,65 @@
+package ${cfg.packageName}.innerService.businessService.impl;
+
+import ${cfg.packageName}.innerService.businessService.${cfg.upperObjectName}BussService;
+import ${cfg.packageName}.innerService.${cfg.upperObjectName}InnerService;
+import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+
+import com.common.*;
+import javax.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
+
+import ${cfg.packageName}.dto.${cfg.upperObjectName}Dto;
+import ${cfg.packageName}.model.${cfg.upperObjectName}Model;
+
+import java.util.List;
+
+/**
+ * <p>
+ * $!{table.comment} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service("${cfg.lowerObjectName}BusinessService")
+@Slf4j
+public class ${cfg.upperObjectName}BussServiceImpl extends BaseBussServiceImpl<${cfg.upperObjectName}Model, ${cfg.upperObjectName}Dto> implements ${cfg.upperObjectName}BussService {
+
+    @Resource
+    private ${cfg.upperObjectName}InnerService  ${cfg.lowerObjectName}InnerService;
+
+    /**
+     * @Description 分页条件查询
+     * @Date ${date}
+     * @Param [param]
+     * @return com.common.PageBean<Dto>
+     **/
+    @Override
+    public PageBean<${cfg.upperObjectName}Dto> selectPageByQueryParam(QueryParam param){
+        IPage<${cfg.upperObjectName}Model> ${cfg.lowerObjectName}ModelPage = ${cfg.lowerObjectName}InnerService.selectPageByQueryParam(param);
+        return getPageBean(param, ${cfg.lowerObjectName}ModelPage);
+    }
+
+    /**
+     * @Description 条件查询
+     * @Date ${date}
+     * @Param [param]
+     * @return List<${cfg.upperObjectName}Dto>
+     **/
+    @Override
+    public List<${cfg.upperObjectName}Dto> selectByQueryParam(QueryParam param) {
+        List<${cfg.upperObjectName}Model> ${cfg.lowerObjectName}Models = ${cfg.lowerObjectName}InnerService.selectByQueryParam(param);
+        List<${cfg.upperObjectName}Dto> desList = null;
+        try {
+            desList = getDtosByModel(${cfg.lowerObjectName}Models);
+        } catch (Exception e) {
+            log.error("查询参数转换异常，param=" + param, e);
+        }
+
+        return desList;
+    }
+
+}
+
+

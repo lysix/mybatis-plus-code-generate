@@ -2,7 +2,7 @@ package  ${cfg.packageName}.businessService.impl;
 
 import ${cfg.packageName}.businessService.${cfg.upperObjectName}BusinessService;
 import ${cfg.packageName}.innerService.${cfg.upperObjectName}InnerService;
-import ${cfg.packageName}.innerService.businessService.DcpThirdOutParameterBussService;
+import ${cfg.packageName}.innerService.businessService.${cfg.upperObjectName}BussService;
 
 import org.springframework.stereotype.Service;
 

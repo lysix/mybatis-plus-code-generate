@@ -2,19 +2,16 @@ package  ${cfg.packageName}.businessService.impl;
 
 import ${cfg.packageName}.businessService.${cfg.upperObjectName}BusinessService;
 import ${cfg.packageName}.innerService.${cfg.upperObjectName}InnerService;
+import ${cfg.packageName}.innerService.businessService.${cfg.upperObjectName}BussService;
+
 import org.springframework.stereotype.Service;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 
 import com.common.QueryParam;
 import javax.annotation.Resource;
 import com.common.PageBean;
-import org.springframework.beans.BeanUtils;
 
 import ${cfg.packageName}.dto.${cfg.upperObjectName}Dto;
-import ${cfg.packageName}.model.${cfg.upperObjectName}Model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,11 +22,14 @@ import java.util.List;
  * @author ${author}
  * @since ${date}
  */
-@Service("${cfg.lowerObjectName}OmsService")
+@Service("${cfg.lowerObjectName}BusinessService")
 public class ${cfg.upperObjectName}BusinessServiceImpl implements ${cfg.upperObjectName}BusinessService {
 
     @Resource
     private ${cfg.upperObjectName}InnerService  ${cfg.lowerObjectName}InnerService;
+
+    @Resource
+    private ${cfg.upperObjectName}BussService ${cfg.lowerObjectName}BussService;
 
     /**
      * @Description 分页条件查询
@@ -39,10 +39,7 @@ public class ${cfg.upperObjectName}BusinessServiceImpl implements ${cfg.upperObj
      **/
     @Override
     public PageBean<${cfg.upperObjectName}Dto> selectPageByQueryParam(QueryParam param){
-        IPage<${cfg.upperObjectName}Model> ${cfg.lowerObjectName}Models = ${cfg.lowerObjectName}InnerService.selectPageByQueryParam(param);
-        List<${cfg.upperObjectName}Dto> desList = getDtosByIPage(${cfg.lowerObjectName}Models);
-        PageBean<${cfg.upperObjectName}Dto> pageBean = makePageBean((int) param.getPageNo(),(int) param.getPageSize(),${cfg.lowerObjectName}Models.getTotal(), desList);
-        return pageBean;
+        return ${cfg.lowerObjectName}BussService.selectPageByQueryParam(param);
     }
 
     /**
@@ -53,70 +50,10 @@ public class ${cfg.upperObjectName}BusinessServiceImpl implements ${cfg.upperObj
      **/
     @Override
     public List<${cfg.upperObjectName}Dto> selectByQueryParam(QueryParam param) {
-        List<${cfg.upperObjectName}Model> ${cfg.lowerObjectName}Models = ${cfg.lowerObjectName}InnerService.selectByQueryParam(param);
-        List<${cfg.upperObjectName}Dto> desList = getDtosByList(${cfg.lowerObjectName}Models);
-        return desList;
+        return ${cfg.lowerObjectName}BussService.selectByQueryParam(param);
     }
 
-    /**
-    * 组装页面查询响应对象
-    * @param current  当前页码
-    * @param pageSize  当前页最大查询数量
-    * @param total  数据总量
-    * @param desList 当前查询数据集合
-    * @return  PageBean<${cfg.upperObjectName}Dto>
-    */
-    private PageBean<${cfg.upperObjectName}Dto> makePageBean(int current,int pageSize, long total,List<${cfg.upperObjectName}Dto> desList) {
-        PageBean<${cfg.upperObjectName}Dto> pageBean = new PageBean<>();
-        pageBean.setList(desList);
-        pageBean.setPageNo(current);
-        pageBean.setPageSize(pageSize);
-        pageBean.setCount(total);
-        return pageBean;
-    }
 
-    /**
-     * 数据库对象model 转换为 对外交互 dto对象
-     * @param test1ModelIPage
-     * @return List<${cfg.upperObjectName}Dto>
-     */
-    private List<${cfg.upperObjectName}Dto> getDtosByIPage(IPage<${cfg.upperObjectName}Model> test1ModelIPage) {
-        List<${cfg.upperObjectName}Dto> desList = new ArrayList<>();
-        List<${cfg.upperObjectName}Model> records = test1ModelIPage.getRecords();
-        if (CollectionUtils.isNotEmpty(records)) {
-            int recordLength = records.size();
-            for (int i = 0; i < recordLength; i++) {
-                ${cfg.upperObjectName}Model sourceModel = records.get(i);
-                ${cfg.upperObjectName}Dto dto = new ${cfg.upperObjectName}Dto();
-//                BeanCopier.create(); 复制工具1
-                // bean 属性对象转换工具2
-                BeanUtils.copyProperties(sourceModel, dto);
-                desList.add(dto);
-            }
-        }
-        return desList;
-    }
-
-    /**
-     * 数据库对象model 转换为 对外交互 dto对象
-     * @param records
-     * @return List<${cfg.upperObjectName}Dto>
-     */
-    private List<${cfg.upperObjectName}Dto> getDtosByList(List<${cfg.upperObjectName}Model> records) {
-        List<${cfg.upperObjectName}Dto> desList = new ArrayList<>();
-        if (CollectionUtils.isNotEmpty(records)) {
-            int recordLength = records.size();
-            for (int i = 0; i < recordLength; i++) {
-                    ${cfg.upperObjectName}Model sourceModel = records.get(i);
-                    ${cfg.upperObjectName}Dto dto = new ${cfg.upperObjectName}Dto();
-//                BeanCopier.create(); 复制工具1
-                // bean 属性对象转换工具2
-                BeanUtils.copyProperties(sourceModel, dto);
-                desList.add(dto);
-            }
-        }
-        return desList;
-    }
 }
 
 

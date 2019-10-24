@@ -22,7 +22,7 @@ import java.util.List;
  * @author ${author}
  * @since ${date}
  */
-@Service("${cfg.lowerObjectName}BusinessService")
+@Service("${cfg.lowerObjectName}BussService")
 @Slf4j
 public class ${cfg.upperObjectName}BussServiceImpl extends BaseBussServiceImpl<${cfg.upperObjectName}Model, ${cfg.upperObjectName}Dto> implements ${cfg.upperObjectName}BussService {
 

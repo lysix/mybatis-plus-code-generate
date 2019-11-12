@@ -1,9 +1,10 @@
 package ${package.Service};
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import ${package.Entity}.${entity};
-import com.common.QueryParam;
-import com.common.BaseService;
+import mybatisplus.base.core.dbinner.base.BaseService;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import mybatisplus.base.api.common.QueryParam;
+
 import java.util.List;
 
 /**

@@ -145,19 +145,6 @@ public class CommonUtils {
                 return Config.projectPath + "/src/main/java/"+packageConfig.getParent().replace(".","/") + "/queryParam/" +underlineToPascal(tableName)+ "QueryParam" + StringPool.DOT_JAVA;
             }
         });
-        fileOutConfigList.add(new FileOutConfig("template/BussService.java.vm") {
-            @Override
-            public String outputFile(TableInfo tableInfo) {
-                return Config.projectPath + "/src/main/java/"+packageConfig.getParent().replace(".","/") + "/innerService/businessService/" +underlineToPascal(tableName)+ "BussService" + StringPool.DOT_JAVA;
-            }
-        });
-        fileOutConfigList.add(new FileOutConfig("template/BussServiceImpl.java.vm") {
-            @Override
-            public String outputFile(TableInfo tableInfo) {
-                System.out.println(Config.projectPath + "/src/main/java/"+packageConfig.getParent().replace(".","/") + "/innerService/businessService/impl/" +underlineToPascal(tableName)+ "BusssServiceImpl" + StringPool.DOT_JAVA);
-                return Config.projectPath + "/src/main/java/"+packageConfig.getParent().replace(".","/") + "/innerService/businessService/impl/" +underlineToPascal(tableName)+ "BussServiceImpl" + StringPool.DOT_JAVA;
-            }
-        });
 
         injectionConfig.setFileOutConfigList(fileOutConfigList);
         return injectionConfig;

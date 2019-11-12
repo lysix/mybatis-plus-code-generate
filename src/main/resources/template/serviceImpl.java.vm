@@ -1,19 +1,19 @@
 package ${package.ServiceImpl};
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import ${package.Entity}.${entity};
 import ${package.Mapper}.${table.mapperName};
 import ${cfg.packageName}.innerService.${table.serviceName};
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
+import mybatisplus.base.core.dbinner.base.impl.BaseServiceImpl;
+import mybatisplus.base.api.common.QueryParam;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.common.QueryParam;
-import com.common.BaseServiceImpl;
-import java.util.List;
 
+import java.util.List;
 
 /**
  * <p>

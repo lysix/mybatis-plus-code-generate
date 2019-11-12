@@ -1,8 +1,0 @@
-package ${cfg.packageName}.innerService.businessService;
-
-import com.common.BaseBussService;
-
-public interface ${cfg.upperObjectName}BussService extends BaseBussService {
-
-
-}

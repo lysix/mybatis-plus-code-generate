@@ -3,7 +3,7 @@ package ${cfg.packageName}.queryParam;
 ##import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import com.common.QueryParam;
+import mybatisplus.base.api.common.QueryParam;
 
 /**
  * <p>
